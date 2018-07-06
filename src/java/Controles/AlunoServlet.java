@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controle;
+package Controles;
 
 import DAOs.DAOAluno;
 import Entidades.Aluno;
@@ -53,6 +53,7 @@ public class AlunoServlet extends HttpServlet {
                         + "<td>" + a.getCepTipoCarteira() + "</td>"
                         + "<td>" + a.getTelefoneAluno() + "</td>"
                         + "<td>" + a.getCelularAluno() + "</td>"
+                        + "<td>" + a.getTipoCarteiraIdTipoCarteira()+ "</td>"
                         + "</tr>";
             }
             request.getSession().setAttribute("resultado", tabela);

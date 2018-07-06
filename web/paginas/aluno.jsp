@@ -27,6 +27,7 @@
                     <th>CEP</th>
                     <th>Telefone</th>
                     <th>Celular</th>
+                    <th>Tipo Carteira</th>
                 </tr>
                     ${resultado}
                 </table>

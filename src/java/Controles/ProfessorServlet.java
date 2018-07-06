@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controle;
+package Controles;
 
 import DAOs.DAOProfessor;
 import Entidades.Professor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Asus
+ * @author Gabi
  */
-@WebServlet(name = "CadastroProfessor", urlPatterns = {"/cadProfessor"})
-public class CadastroProfessorServlet extends HttpServlet {
+@WebServlet(name = "ProfessorServlet", urlPatterns = {"/professor"})
+public class ProfessorServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,19 +36,18 @@ public class CadastroProfessorServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            DAOProfessor daoProfessor = new DAOProfessor();
-            Professor p = new Professor();
-            String cpf = request.getParameter("cpf");
-            String nome = request.getParameter("nome");
-            String hab = request.getParameter("habilitacao");
-            
-            p.setCpfProfessor(cpf);
-            p.setNomeProfessor(nome);
-            p.setHabilitacao(hab);
-            
-            daoProfessor.inserir(p);
-            response.sendRedirect(request.getContextPath()+"/paginas/professorCad.jsp");
+            DAOProfessor professor = new DAOProfessor();
+            List <Professor> listaProfessor = professor.listInOrderCpfProfessor();
+            String tabela = "";
+            for (Professor p : listaProfessor) {
+                tabela += "<tr>"
+                       +"<td>"+p.getCpfProfessor()+"</td>"
+                       +"<td>"+p.getNomeProfessor()+"</td>"
+                       +"<td>"+p.getHabilitacao()+"</td>"
+                       +"</tr>";
+            }
+            request.getSession().setAttribute("resultado",tabela);
+            response.sendRedirect(request.getContextPath()+"/paginas/professor.jsp");
         }
     }
 
