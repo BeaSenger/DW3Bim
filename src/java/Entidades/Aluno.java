@@ -231,5 +231,5 @@ public class Aluno implements Serializable {
     public String toString() {
         return "Entidades.Aluno[ cpfAluno=" + cpfAluno + " ]";
     }
-    
+
 }
