@@ -1,10 +1,12 @@
 <%-- 
     Document   : veiculoCad
-    Created on : 13/09/2018, 13:56:07
+    Created on : 25/10/2018, 20:36:47
     Author     : Asus
 --%>
+
 <%@page import="Entidades.TipoVeiculo"%>
 <%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="DAOs.DAOTipoVeiculo"%>
 
 <%
@@ -12,25 +14,26 @@
     List<TipoVeiculo> tipoVeiculo = daoTipoVeiculo.listInOrderIdTipoVeiculo();
 %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="../Estilos/Cadastros.css" rel="stylesheet" type="text/css"/>
-        <title>JSP Page</title>
+        <title>Cadastro</title>
     </head>
     <body>
 
-        <div> <h1> Cadastro Veiculo </h1></div>
+        <div> <h1> Cadastro Veículos </h1></div>
         <form action="${pageContext.request.contextPath}/cadVeiculo"> 
             <p> 
-                <label for="codigo"> Código: </label>
+                <label for="codigo"> Codigo: </label>
                 <input type="text" name="codigo_veiculo"/>
-                <label for="nome"> Modelo: </label>
+                
+                <label for="nome"> Nome: </label>
                 <input type="text" name="nome_veiculo"/>
-                <label for="habilitacao"> Tipo Veiculo: </label>
-                -<select class="form-control" name="tipo_veiculo_id_tipo_veiculo">
+                
+                <label for="text"> Tipo: </label>
+                <select class="form-control" name="tipo_veiculo_id_tipo_veiculo">
                     <option value="">SELECIONE</option>
                 <%
                     for (TipoVeiculo i : tipoVeiculo) {
@@ -41,6 +44,6 @@
                 </select>
                 
                 <input type="submit" value="Enviar" />
-            </p>
+                
     </body>
 </html>

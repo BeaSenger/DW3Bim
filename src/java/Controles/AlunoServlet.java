@@ -53,7 +53,7 @@ public class AlunoServlet extends HttpServlet {
                         + "<td>" + a.getCepTipoCarteira() + "</td>"
                         + "<td>" + a.getTelefoneAluno() + "</td>"
                         + "<td>" + a.getCelularAluno() + "</td>"
-                        + "<td>" + a.getTipoCarteiraIdTipoCarteira()+ "</td>"
+                        + "<td>" + a.getTipoCarteiraIdTipoCarteira().getNomeTipoCarteira()+ "</td>"
                         + "</tr>";
             }
             request.getSession().setAttribute("resultado", tabela);

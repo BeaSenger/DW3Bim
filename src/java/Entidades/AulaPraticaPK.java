@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author radames
+ * @author Asus
  */
 @Embeddable
 public class AulaPraticaPK implements Serializable {

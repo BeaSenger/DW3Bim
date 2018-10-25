@@ -17,21 +17,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author radames
+ * @author Asus
  */
 @Entity
 @Table(name = "turma_teorica_has_aluno")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TurmaTeoricaHasAluno.findAll", query = "SELECT t FROM TurmaTeoricaHasAluno t")
-    , @NamedQuery(name = "TurmaTeoricaHasAluno.findByTurmaTeoricaCodigoTurma", query = "SELECT t FROM TurmaTeoricaHasAluno t WHERE t.turmaTeoricaHasAlunoPK.turmaTeoricaCodigoTurma = :turmaTeoricaCodigoTurma")
-    , @NamedQuery(name = "TurmaTeoricaHasAluno.findByAlunoCpfAluno", query = "SELECT t FROM TurmaTeoricaHasAluno t WHERE t.turmaTeoricaHasAlunoPK.alunoCpfAluno = :alunoCpfAluno")
-    , @NamedQuery(name = "TurmaTeoricaHasAluno.findByDataAula", query = "SELECT t FROM TurmaTeoricaHasAluno t WHERE t.dataAula = :dataAula")
-    , @NamedQuery(name = "TurmaTeoricaHasAluno.findByCompareceu", query = "SELECT t FROM TurmaTeoricaHasAluno t WHERE t.compareceu = :compareceu")})
+    @NamedQuery(name = "TurmaTeoricaHasAluno.findAll", query = "SELECT t FROM TurmaTeoricaHasAluno t")})
 public class TurmaTeoricaHasAluno implements Serializable {
 
     private static final long serialVersionUID = 1L;

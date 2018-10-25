@@ -17,23 +17,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author radames
+ * @author Asus
  */
 @Entity
 @Table(name = "aula_pratica")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "AulaPratica.findAll", query = "SELECT a FROM AulaPratica a")
-    , @NamedQuery(name = "AulaPratica.findByAlunoCpfAluno", query = "SELECT a FROM AulaPratica a WHERE a.aulaPraticaPK.alunoCpfAluno = :alunoCpfAluno")
-    , @NamedQuery(name = "AulaPratica.findByProfessorCpfProfessor", query = "SELECT a FROM AulaPratica a WHERE a.aulaPraticaPK.professorCpfProfessor = :professorCpfProfessor")
-    , @NamedQuery(name = "AulaPratica.findByDataAula", query = "SELECT a FROM AulaPratica a WHERE a.aulaPraticaPK.dataAula = :dataAula")
-    , @NamedQuery(name = "AulaPratica.findByHoraInicio", query = "SELECT a FROM AulaPratica a WHERE a.horaInicio = :horaInicio")
-    , @NamedQuery(name = "AulaPratica.findByHoraFim", query = "SELECT a FROM AulaPratica a WHERE a.horaFim = :horaFim")
-    , @NamedQuery(name = "AulaPratica.findByObservacao", query = "SELECT a FROM AulaPratica a WHERE a.observacao = :observacao")})
+    @NamedQuery(name = "AulaPratica.findAll", query = "SELECT a FROM AulaPratica a")})
 public class AulaPratica implements Serializable {
 
     private static final long serialVersionUID = 1L;

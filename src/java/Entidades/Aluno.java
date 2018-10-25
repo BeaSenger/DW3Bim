@@ -21,29 +21,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author radames
+ * @author Asus
  */
 @Entity
 @Table(name = "aluno")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Aluno.findAll", query = "SELECT a FROM Aluno a")
-    , @NamedQuery(name = "Aluno.findByCpfAluno", query = "SELECT a FROM Aluno a WHERE a.cpfAluno = :cpfAluno")
-    , @NamedQuery(name = "Aluno.findByNomeAluno", query = "SELECT a FROM Aluno a WHERE a.nomeAluno = :nomeAluno")
-    , @NamedQuery(name = "Aluno.findByDataNascimento", query = "SELECT a FROM Aluno a WHERE a.dataNascimento = :dataNascimento")
-    , @NamedQuery(name = "Aluno.findByRgAluno", query = "SELECT a FROM Aluno a WHERE a.rgAluno = :rgAluno")
-    , @NamedQuery(name = "Aluno.findByRgEmissorAluno", query = "SELECT a FROM Aluno a WHERE a.rgEmissorAluno = :rgEmissorAluno")
-    , @NamedQuery(name = "Aluno.findByEnderecoAluno", query = "SELECT a FROM Aluno a WHERE a.enderecoAluno = :enderecoAluno")
-    , @NamedQuery(name = "Aluno.findByCidadeAluno", query = "SELECT a FROM Aluno a WHERE a.cidadeAluno = :cidadeAluno")
-    , @NamedQuery(name = "Aluno.findByBairroAluno", query = "SELECT a FROM Aluno a WHERE a.bairroAluno = :bairroAluno")
-    , @NamedQuery(name = "Aluno.findByCepTipoCarteira", query = "SELECT a FROM Aluno a WHERE a.cepTipoCarteira = :cepTipoCarteira")
-    , @NamedQuery(name = "Aluno.findByTelefoneAluno", query = "SELECT a FROM Aluno a WHERE a.telefoneAluno = :telefoneAluno")
-    , @NamedQuery(name = "Aluno.findByCelularAluno", query = "SELECT a FROM Aluno a WHERE a.celularAluno = :celularAluno")})
+    @NamedQuery(name = "Aluno.findAll", query = "SELECT a FROM Aluno a")})
 public class Aluno implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -189,7 +175,6 @@ public class Aluno implements Serializable {
         this.tipoCarteiraIdTipoCarteira = tipoCarteiraIdTipoCarteira;
     }
 
-    @XmlTransient
     public List<AulaPratica> getAulaPraticaList() {
         return aulaPraticaList;
     }
@@ -198,7 +183,6 @@ public class Aluno implements Serializable {
         this.aulaPraticaList = aulaPraticaList;
     }
 
-    @XmlTransient
     public List<TurmaTeoricaHasAluno> getTurmaTeoricaHasAlunoList() {
         return turmaTeoricaHasAlunoList;
     }
@@ -231,5 +215,5 @@ public class Aluno implements Serializable {
     public String toString() {
         return "Entidades.Aluno[ cpfAluno=" + cpfAluno + " ]";
     }
-
+    
 }

@@ -5,14 +5,11 @@
  */
 package Controles;
 
-import DAOs.DAOTipoVeiculo;
-import DAOs.DAOVeiculo;
-import Entidades.TipoVeiculo;
-import Entidades.Veiculo;
+import DAOs.DAOTurmaTeorica;
+import Entidades.TurmaTeorica;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Asus
  */
-@WebServlet(name = "CadastroVeiculoServlet", urlPatterns = {"/cadVeiculo"})
-public class CadastroVeiculoServlet extends HttpServlet {
+@WebServlet(name = "TurmaTeoricaServlet", urlPatterns = {"/turmaTeorica"})
+public class TurmaTeoricaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,21 +36,20 @@ public class CadastroVeiculoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            DAOVeiculo daoVeiculo = new DAOVeiculo();
-            Veiculo a = new Veiculo();
-            
-            int codigo = Integer.valueOf(request.getParameter("codigo_veiculo"));
-            String nome = request.getParameter("nome_veiculo");
-            int tipoVeiculo = Integer.parseInt(request.getParameter("tipo_veiculo_id_tipo_veiculo"));
-            DAOTipoVeiculo daoTipoVeiculo = new DAOTipoVeiculo();
-            TipoVeiculo tc = new TipoVeiculo();
-            tc = daoTipoVeiculo.obter(tipoVeiculo);
-            
-            a.setCodigoVeiculo(codigo);
-            a.setNomeVeiculo(nome);
-            a.setTipoVeiculoIdTipoVeiculo(tc);
-            daoVeiculo.inserir(a);
-            response.sendRedirect(request.getContextPath() + "/paginas/veiculoCad.jsp");
+           DAOTurmaTeorica aluno = new DAOTurmaTeorica();
+            List<TurmaTeorica> listaTurmaTeorica = aluno.listInOrderCodigoTurma();
+            String tabela = "";
+            for (TurmaTeorica a : listaTurmaTeorica) {
+                tabela += "<tr>"
+                        + "<td>" + a.getCodigoTurma() + "</td>"
+                        + "<td>" + a.getPeriodoTurma() + "</td>"
+                        + "<td>" + a.getDataInicio() + "</td>"
+                        + "<td>" + a.getQuantidadeHoras() + "</td>"
+                        + "<td>" + a.getProfessorCpfProfessor() + "</td>"
+                        + "</tr>";
+            }
+            request.getSession().setAttribute("resultado", tabela);
+            response.sendRedirect(request.getContextPath() + "/paginas/turmaTeorica.jsp");
         }
     }
 

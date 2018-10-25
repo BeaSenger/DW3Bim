@@ -1,6 +1,6 @@
 <%-- 
-    Document   : veiculo
-    Created on : 25/10/2018, 12:44:22
+    Document   : TurmaTeorica
+    Created on : 24/10/2018, 16:33:59
     Author     : Asus
 --%>
 
@@ -16,9 +16,11 @@
         <form>
             <table id="customers">
                 <tr>
-                    <th>Codigo Veiculo</th>
-                    <th>Nome</th>
-                    <th>Tipo</th>        
+                    <th>Codigo</th>
+                    <th>Período</th>
+                    <th>Data Inicioo</th>        
+                    <th>Qtde Horas</th> 
+                    <th>Prof</th> 
                 </tr>
                     ${resultado}
                 </table>

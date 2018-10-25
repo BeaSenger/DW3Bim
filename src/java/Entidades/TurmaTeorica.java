@@ -21,22 +21,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author radames
+ * @author Asus
  */
 @Entity
 @Table(name = "turma_teorica")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TurmaTeorica.findAll", query = "SELECT t FROM TurmaTeorica t")
-    , @NamedQuery(name = "TurmaTeorica.findByCodigoTurma", query = "SELECT t FROM TurmaTeorica t WHERE t.codigoTurma = :codigoTurma")
-    , @NamedQuery(name = "TurmaTeorica.findByPeriodoTurma", query = "SELECT t FROM TurmaTeorica t WHERE t.periodoTurma = :periodoTurma")
-    , @NamedQuery(name = "TurmaTeorica.findByDataInicio", query = "SELECT t FROM TurmaTeorica t WHERE t.dataInicio = :dataInicio")
-    , @NamedQuery(name = "TurmaTeorica.findByQuantidadeHoras", query = "SELECT t FROM TurmaTeorica t WHERE t.quantidadeHoras = :quantidadeHoras")})
+    @NamedQuery(name = "TurmaTeorica.findAll", query = "SELECT t FROM TurmaTeorica t")})
 public class TurmaTeorica implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -96,7 +89,6 @@ public class TurmaTeorica implements Serializable {
         this.quantidadeHoras = quantidadeHoras;
     }
 
-    @XmlTransient
     public List<TurmaTeoricaHasAluno> getTurmaTeoricaHasAlunoList() {
         return turmaTeoricaHasAlunoList;
     }

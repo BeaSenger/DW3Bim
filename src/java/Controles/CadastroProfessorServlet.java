@@ -6,9 +6,13 @@
 package Controles;
 
 import DAOs.DAOProfessor;
+import DAOs.DAOTipoCarteira;
 import Entidades.Professor;
+import Entidades.TipoCarteira;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Asus
  */
-@WebServlet(name = "CadastroProfessor", urlPatterns = {"/cadProfessor"})
+@WebServlet(name = "CadastroProfessorServlet", urlPatterns = {"/cadProfessor"})
 public class CadastroProfessorServlet extends HttpServlet {
 
     /**
@@ -35,19 +39,16 @@ public class CadastroProfessorServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
             DAOProfessor daoProfessor = new DAOProfessor();
-            Professor p = new Professor();
-            String cpf = request.getParameter("cpf");
-            String nome = request.getParameter("nome");
-            String hab = request.getParameter("habilitacao");
-            
-            p.setCpfProfessor(cpf);
-            p.setNomeProfessor(nome);
-            p.setHabilitacao(hab);
-            
-            daoProfessor.inserir(p);
-            response.sendRedirect(request.getContextPath()+"/paginas/professorCad.jsp");
+            Professor a = new Professor();
+            String cpf = request.getParameter("cpf_professor");
+            String nome = request.getParameter("nome_professor");
+            String habi = request.getParameter("habilitacao");
+            a.setCpfProfessor(cpf);
+            a.setNomeProfessor(nome);
+            a.setHabilitacao(habi);
+            daoProfessor.inserir(a);
+            response.sendRedirect(request.getContextPath() + "/paginas/professorCad.jsp");
         }
     }
 

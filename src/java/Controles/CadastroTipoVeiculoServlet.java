@@ -37,10 +37,10 @@ public class CadastroTipoVeiculoServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             DAOTipoVeiculo daoTipoVeiculo = new DAOTipoVeiculo();
             TipoVeiculo p = new TipoVeiculo();
-            Integer id = Integer.parseInt(request.getParameter("id_tipo_veiculo"));
+//            Integer id = Integer.parseInt(request.getParameter("id_tipo_veiculo"));
             String nome = request.getParameter("nome_tipo_veiculo");
 
-            p.setIdTipoVeiculo(id);
+//            p.setIdTipoVeiculo(id);
             p.setNomeTipoVeiculo(nome);
 
             daoTipoVeiculo.inserir(p);

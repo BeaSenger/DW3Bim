@@ -5,10 +5,15 @@
  */
 package Controles;
 
+import DAOs.DAOProfessor;
 import DAOs.DAOTurmaTeorica;
+import Entidades.Professor;
 import Entidades.TurmaTeorica;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +24,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Asus
  */
-@WebServlet(name = "CadastroTurmaTeoricaServlet", urlPatterns = {"/CadastroTurmaTeoricaServlet"})
+@WebServlet(name = "CadastroTurmaTeoricaServlet", urlPatterns = {"/cadTurmaTeorica"})
 public class CadastroTurmaTeoricaServlet extends HttpServlet {
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,23 +42,33 @@ public class CadastroTurmaTeoricaServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            DAOTurmaTeorica daoTurmaTeorica = new DAOTurmaTeorica();
-            TurmaTeorica p = new TurmaTeorica();
-            String codigo = request.getParameter("codigo");
-            String periodo = request.getParameter("periodo");
-            String data = request.getParameter("data");
-            String cpfProf = request.getParameter("cpfProf");
-            String qtdeHoras = request.getParameter("qtdeHoras");
-            
-            p.setCodigoTurma(Integer.valueOf(codigo));
-            p.setPeriodoTurma(periodo);
-//            p.setDataInicio(Date.from(data));
-//            p.setProfessorCpfProfessor(String.valueOf(cpfProf));
-            p.setQuantidadeHoras(Integer.valueOf(qtdeHoras));
-            
-            daoTurmaTeorica.inserir(p);
-            response.sendRedirect(request.getContextPath()+"/paginas/turmaTeoricaCad.jsp");
+            try {
+                DAOTurmaTeorica daoTurmaTeorica = new DAOTurmaTeorica();
+                TurmaTeorica a = new TurmaTeorica();
+
+                int codigo = Integer.valueOf(request.getParameter("codigo_turma"));
+                String periodo = request.getParameter("periodo_turma");
+                Date data = sdf.parse(request.getParameter("data_inicio"));
+                int qtde = Integer.valueOf(request.getParameter("quantidade_horas"));
+
+                int professor = Integer.valueOf(request.getParameter("professr_cpf_professor"));
+                DAOProfessor daoProfessor = new DAOProfessor();
+                Professor prof = new Professor();
+                prof = daoProfessor.obter(professor);
+                
+                
+                a.setCodigoTurma(codigo);
+                a.setPeriodoTurma(periodo);
+                a.setDataInicio(data);
+                a.setQuantidadeHoras(qtde);
+                a.setProfessorCpfProfessor(prof);
+
+                daoTurmaTeorica.inserir(a);
+                response.sendRedirect(request.getContextPath() + "/paginas/alunoCad.jsp");
+
+            } catch (ParseException ex) {
+
+            }
         }
     }
 

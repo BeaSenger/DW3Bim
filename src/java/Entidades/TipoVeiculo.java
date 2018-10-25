@@ -16,20 +16,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author radames
+ * @author Asus
  */
 @Entity
 @Table(name = "tipo_veiculo")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoVeiculo.findAll", query = "SELECT t FROM TipoVeiculo t")
-    , @NamedQuery(name = "TipoVeiculo.findByIdTipoVeiculo", query = "SELECT t FROM TipoVeiculo t WHERE t.idTipoVeiculo = :idTipoVeiculo")
-    , @NamedQuery(name = "TipoVeiculo.findByNomeTipoVeiculo", query = "SELECT t FROM TipoVeiculo t WHERE t.nomeTipoVeiculo = :nomeTipoVeiculo")})
+    @NamedQuery(name = "TipoVeiculo.findAll", query = "SELECT t FROM TipoVeiculo t")})
 public class TipoVeiculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -71,7 +66,6 @@ public class TipoVeiculo implements Serializable {
         this.nomeTipoVeiculo = nomeTipoVeiculo;
     }
 
-    @XmlTransient
     public List<Veiculo> getVeiculoList() {
         return veiculoList;
     }

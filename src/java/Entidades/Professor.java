@@ -16,21 +16,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author radames
+ * @author Asus
  */
 @Entity
 @Table(name = "professor")
-@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Professor.findAll", query = "SELECT p FROM Professor p")
-    , @NamedQuery(name = "Professor.findByCpfProfessor", query = "SELECT p FROM Professor p WHERE p.cpfProfessor = :cpfProfessor")
-    , @NamedQuery(name = "Professor.findByNomeProfessor", query = "SELECT p FROM Professor p WHERE p.nomeProfessor = :nomeProfessor")
-    , @NamedQuery(name = "Professor.findByHabilitacao", query = "SELECT p FROM Professor p WHERE p.habilitacao = :habilitacao")})
+    @NamedQuery(name = "Professor.findAll", query = "SELECT p FROM Professor p")})
 public class Professor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -84,7 +78,6 @@ public class Professor implements Serializable {
         this.habilitacao = habilitacao;
     }
 
-    @XmlTransient
     public List<AulaPratica> getAulaPraticaList() {
         return aulaPraticaList;
     }
@@ -93,7 +86,6 @@ public class Professor implements Serializable {
         this.aulaPraticaList = aulaPraticaList;
     }
 
-    @XmlTransient
     public List<TurmaTeorica> getTurmaTeoricaList() {
         return turmaTeoricaList;
     }

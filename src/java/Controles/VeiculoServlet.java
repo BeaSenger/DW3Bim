@@ -5,8 +5,8 @@
  */
 package Controles;
 
-import DAOs.DAOTipoCarteira;
-import Entidades.TipoCarteira;
+import DAOs.DAOVeiculo;
+import Entidades.Veiculo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -20,9 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Asus
  */
-@WebServlet(name = "TipoCarteiraServlet", urlPatterns = {"/tipoCarteira"})
-public class TipoCarteiraServlet extends HttpServlet {
-    
+@WebServlet(name = "VeiculoServlet", urlPatterns = {"/veiculo"})
+public class VeiculoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,18 +36,18 @@ public class TipoCarteiraServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            DAOTipoCarteira tipoCarteira = new DAOTipoCarteira();
-            List<TipoCarteira> listaTipoCarteira = tipoCarteira.listInOrderIdTipoCarteira();
+            DAOVeiculo aluno = new DAOVeiculo();
+            List<Veiculo> listaVeiculo = aluno.listInOrderCodigoVeiculo();
             String tabela = "";
-            for (TipoCarteira a : listaTipoCarteira) {
+            for (Veiculo a : listaVeiculo) {
                 tabela += "<tr>"
-                        + "<td>" + a.getIdTipoCarteira() + "</td>"
-                        + "<td>" + a.getNomeTipoCarteira() + "</td>"
+                        + "<td>" + a.getCodigoVeiculo()+ "</td>"
+                        + "<td>" + a.getNomeVeiculo() + "</td>"
+                        + "<td>" + a.getTipoVeiculoIdTipoVeiculo().getNomeTipoVeiculo()+ "</td>"
                         + "</tr>";
             }
             request.getSession().setAttribute("resultado", tabela);
-            response.sendRedirect(request.getContextPath() + "/paginas/tipoCarteira.jsp");
+            response.sendRedirect(request.getContextPath() + "/paginas/veiculo.jsp");
         }
     }
 

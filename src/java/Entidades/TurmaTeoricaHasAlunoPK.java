@@ -12,7 +12,7 @@ import javax.persistence.Embeddable;
 
 /**
  *
- * @author radames
+ * @author Asus
  */
 @Embeddable
 public class TurmaTeoricaHasAlunoPK implements Serializable {

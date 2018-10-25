@@ -6,10 +6,14 @@
 package Controles;
 
 import DAOs.DAOAluno;
+import DAOs.DAOTipoCarteira;
 import Entidades.Aluno;
-import static Entidades.Aluno_.tipoCarteiraIdTipoCarteira;
+import Entidades.TipoCarteira;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,11 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Asus
+ * @author Gabi
  */
-@WebServlet(name = "CadastroAlunoServlet", urlPatterns = {"/CadastroAlunoServlet"})
+@WebServlet(name = "CadAlunoervlet", urlPatterns = {"/cadAluno"})
 public class CadastroAlunoServlet extends HttpServlet {
-
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,37 +40,47 @@ public class CadastroAlunoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            try {
             DAOAluno daoAluno = new DAOAluno();
-            Aluno p = new Aluno();
-            String cpf = request.getParameter("cpf");
-            String nome = request.getParameter("nome");
-            String data = request.getParameter("data");
-            String rgA = request.getParameter("rgA");
-            String rgE = request.getParameter("rgEmissor");
-            String endereco = request.getParameter("endereco");
-            String cidade = request.getParameter("cidade");
-            String bairro = request.getParameter("bairro");
-            String cep = request.getParameter("cep");
-            String tel = request.getParameter("tel");
-            String cel = request.getParameter("cel");
-            String habilitacao = request.getParameter("habilitacao");
+            Aluno a = new Aluno();
             
-            p.setCpfAluno(cpf);
-            p.setNomeAluno(nome);
-//            p.setDataNascimento(String.valueOf(data));
-            p.setRgAluno(rgA);
-            p.setRgEmissorAluno(rgE);
-            p.setEnderecoAluno(endereco);
-            p.setCidadeAluno(cidade);
-            p.setBairroAluno(bairro);
-            p.setCepTipoCarteira(cep);
-            p.setTelefoneAluno(tel);
-            p.setCelularAluno(cel);
-//            p.setTipoCarteiraIdTipoCarteira(habilitacao);
+            String cpf  = request.getParameter("cpf_aluno");
+            String nome = request.getParameter("nome_aluno");
+            Date data = sdf.parse(request.getParameter("data_nasc"));
+            String rg = request.getParameter("rg_aluno");
+            String rgE = request.getParameter("rg_emissor_aluno");
+            String end = request.getParameter("endereco_aluno");
+            String cidade = request.getParameter("cidade_aluno");
+            String bairro = request.getParameter("bairro_aluno");
+            String cep = request.getParameter("cep_tipo_carteira");
+            String tel = request.getParameter("telefone_aluno");
+            String cel = request.getParameter("celular_aluno");
             
-            daoAluno.inserir(p);
-            response.sendRedirect(request.getContextPath()+"/paginas/alunoCad.jsp");
+            int tipoCarteira = Integer.parseInt(request.getParameter("tipo_carteira_id_tipo_carteira"));
+            DAOTipoCarteira daoTipoCarteira = new DAOTipoCarteira();
+            TipoCarteira tc = new TipoCarteira();
+            tc = daoTipoCarteira.obter(tipoCarteira);
+            
+            a.setCpfAluno(cpf);
+            a.setNomeAluno(nome);
+            a.setDataNascimento(data);
+            a.setRgAluno(rg);
+            a.setRgEmissorAluno(rgE);
+            a.setEnderecoAluno(end);
+            a.setCidadeAluno(cidade);
+            a.setBairroAluno(bairro);
+            a.setCepTipoCarteira(cep);
+            a.setTelefoneAluno(tel);
+            a.setCelularAluno(cel);
+            a.setTipoCarteiraIdTipoCarteira(tc);
+            
+            daoAluno.inserir(a);
+            response.sendRedirect(request.getContextPath() + "/paginas/alunoCad.jsp");
+
+            
+            } catch (ParseException ex) {
+               
+            }
         }
     }
 
